@@ -31,7 +31,7 @@ if EPD_SIZE == 0.0:
     sys.exit()
 
 # Let's define the lines we're gonna use. False in text holds updates to the screen until WriteAll() is called
-text = PapirusTextPos(False, rotation = 0)
+text = PapirusTextPos(False, rotation = 180)
 text.AddText("", 0,0,20,Id="1")
 text.AddText("", 0,20,20,Id="2")
 text.AddText("", 0,40,20,Id="3")
@@ -59,7 +59,7 @@ def exit_gracefully(signum, frame):
     # Trigger the display to update
     text.WriteAll()
     
-    sleep(4)
+    sleep(1) # Let's give the display a moment to refresh. Probably not necessary.
     sys.exit(0)
 
     #just in case we do something during cleanup that means we *shouldn't" exit, we want our handler to stay intact.
