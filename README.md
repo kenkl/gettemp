@@ -11,7 +11,11 @@ Both are running code based on the simple web server, exposing the sensor readin
 
 Currently, I don't attempt to do anything fancy with the data - simply displaying it as text on the display. In landscape-orientation, you get (roughly) five lines of screen real-estate. I use that to display the polling of a sensor in the living-room (ESP1), my home-office (Datacentre), and outside.
 
-The script (gettemp.py) is wired up to launch at system startup via /etc/rc.local. Depending how it behaves long-term, I might construct a simple watchdog to ensure the script runs continuously, uninterrupted.
+For continuous updates, I have a line in the crontab of the user context running this. Because ambient temperatures don't change *that* quickly, I run this every five minutes (could do 10, 20 or even 30, really):
+
+```
+*/5 * * * * /home/pi/gettemp/gettemp.py
+```
 
 I don't (currently) have it in a case or anything fancy. It's simply stuck to the door-jam with a bit of [BluTack](https://www.amazon.com/Blu-Tack-060968-Reusable-Adhesive-75g/dp/B001FGLX72/ref=sr_1_3?ie=UTF8&qid=1512329012&sr=8-3&keywords=blue+tack):
 

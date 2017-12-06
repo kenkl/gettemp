@@ -124,10 +124,7 @@ def refreshdisplay():
     text.WriteAll()    
 
 def main():
-
-    while True:
-        refreshdisplay()
-        time.sleep(60)
+    refreshdisplay()
 
 if __name__ == '__main__':
         #store original SIGs to trap, then redirect them. 
