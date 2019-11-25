@@ -12,8 +12,8 @@ import argparse
 from time import sleep, strftime
 from datetime import datetime
 
-url1 = "http://esp1.kenkl.org/temp"  # living-room sensor
-url2 = "http://ardu1.kenkl.org"  # outside/DC sensor 
+url1 = "http://poeslaw.kenkl.net/esp1"  # living-room sensor
+url2 = "http://poeslaw.kenkl.net/ardu1"  # outside/DC sensor 
 
 # Running as root only needed for older Raspbians without /dev/gpiomem
 if not (os.path.exists('/dev/gpiomem') and os.access('/dev/gpiomem', os.R_OK | os.W_OK)):
