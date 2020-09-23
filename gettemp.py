@@ -31,7 +31,7 @@ if EPD_SIZE == 0.0:
     sys.exit()
 
 # Let's define the lines we're gonna use. False in text holds updates to the screen until WriteAll() is called
-text = PapirusTextPos(False, rotation = 180)
+text = PapirusTextPos(False, rotation = 0)
 text.AddText("", 0,0,20,Id="1")
 text.AddText("", 0,20,20,Id="2")
 text.AddText("", 0,40,20,Id="3")
