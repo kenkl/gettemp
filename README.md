@@ -20,3 +20,22 @@ For continuous updates, I have a line in the crontab of the user context running
 I don't (currently) have it in a case or anything fancy. It's simply stuck to the door-jam with a bit of [BluTack](https://www.amazon.com/Blu-Tack-060968-Reusable-Adhesive-75g/dp/B001FGLX72/ref=sr_1_3?ie=UTF8&qid=1512329012&sr=8-3&keywords=blue+tack):
 
 ![alt text](https://raw.githubusercontent.com/kenkl/gettemp/master/action_shot.jpg "gettemp action shot")
+
+2020-09-24: 
+
+After almost 3 years, this thing is still in service, although I've made a couple changes. First, it no longer lives on the door-jam, but on my desk; I had to change the orientation of the display. Also, the outside sensor is on the south end of the house, and is not terribly accurate as it picks up ambient heat from the house. When the sun shines on it, it's _wildly_ wrong. So, I added a bit of code to grab the temperature from [openweathermap.org](https://openweathermap.org/) (account required). It tends to be a lot more accurate, especially during the day.
+
+The OpenWeather key and city are stored in secrets.py, which only needs these two lines:
+
+```
+owmkey = "APPID=0123456789abcdef"
+city = "New%20York,us"
+```
+
+Of _course_, you'll want to provide your own APPID here; the pictured one will not work. Also, note that spaces in the city name need to be pre-encoded (I don't do anything clever with that in my code) with '%20' to assemble a proper URL string.
+
+After all this time, I _still_ don't have a case for it, but here's an updated snapshot of it sitting on my desk, propped up against a speaker, showing the new line populated with openweathermap.org data:
+
+![alt text](https://raw.githubusercontent.com/kenkl/gettemp/master/action_shot2.jpg "gettemp action shot 2")
+
+

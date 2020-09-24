@@ -7,11 +7,12 @@ import time
 import urllib
 import json
 from papirus import PapirusTextPos
-#from papirus import LM75B
 import argparse
 from time import sleep, strftime
 from datetime import datetime
+import secrets
 
+weatherURL = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=" + secrets.city + "&" + secrets.owmkey
 url1 = "http://poeslaw.kenkl.net/esp1"  # living-room sensor
 url2 = "http://poeslaw.kenkl.net/ardu1"  # outside/DC sensor 
 
@@ -107,18 +108,22 @@ def refreshdisplay():
     two = 'DC: ' + str(temp2)
     three = 'Outside: ' + str(temp3)
 
-    # Finally, write those lines
+    # Then, write those lines
     text.UpdateText("2", two)
     text.UpdateText("3", three)
 
-    ''' On second thought, let's not. The LM75B is reading really high (30.5+ in a room at 22), and the line screws up the display of datetime on line 5 for some reason...
-    # Let's grab the on-board temp sensor and use it for line four...
-    sensor = LM75B()
-    tempC = '{c:.2f}'.format(c=sensor.getTempCFloat())
-
-    four = ("LM75B: " + tempC)
+    # Let's grab the temperature reported by OWM and display it here...
+    wr = urllib.urlopen(weatherURL)
+    wd = wr.read()
+    wd = wd.replace("'", '"')
+    response = json.loads(wd)
+    # We really only need the 'main' node...
+    main = response['main']
+    # ...and the temp returned there
+    owmTemp = main['temp']
+    
+    four = ("OWM: " + str(owmTemp))
     text.UpdateText("4", four)
-    '''
 
     # Trigger the display to update
     text.WriteAll()    
